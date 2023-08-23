@@ -9,10 +9,18 @@ import SwiftUI
 import Firebase
 
 struct LoginView: View {
+    
+    enum Field {
+        case email, password
+    }
+    
+    @FocusState private var focusField: Field?
     @State private var email = ""
     @State private var password = ""
     @State private var showingAlert = false
+    @State private var buttonsDisabled = true
     @State private var alertMessage = ""
+
     
     var body: some View {
         NavigationStack {
@@ -26,10 +34,25 @@ struct LoginView: View {
                     .autocorrectionDisabled()
                     .textInputAutocapitalization(.never)
                     .submitLabel(.next)
+                    .focused($focusField, equals: .email)
+                    .onSubmit { // Move from email field to password field
+                        focusField = .password
+                    }
+                    .onChange(of: email) { _ in
+                        enableButtons()
+                    }
                 
                 SecureField("Password", text: $password)
                     .textInputAutocapitalization(.never)
                     .submitLabel(.done)
+                    .focused($focusField, equals: .password)
+                    .onSubmit {
+                        focusField = nil    // Dismiss the keyboard
+                    }
+                    .onChange(of: password) { _ in
+                        enableButtons()
+                    }
+
             }
             .textFieldStyle(.roundedBorder)
             .overlay {
@@ -49,6 +72,7 @@ struct LoginView: View {
                 }
                 Spacer()
             }
+            .disabled(buttonsDisabled)
             .buttonStyle(.borderedProminent)
             .tint(Color("SnackColor"))
             .font(.title2)
@@ -61,6 +85,16 @@ struct LoginView: View {
         
     }
     
+    func enableButtons() {
+        let emailIsGood = email.count >= 6 && email.contains("@")
+        let passwordIsGood = password.count >= 6
+        if emailIsGood && passwordIsGood {
+            buttonsDisabled = false
+        } else {
+            buttonsDisabled = true
+        }
+    }
+
     func register() {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {  // login error occured
