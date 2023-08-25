@@ -15,16 +15,16 @@ struct LoginView: View {
     }
     
     @FocusState private var focusField: Field?
-    @State private var path = NavigationPath()
     @State private var email = ""
     @State private var password = ""
     @State private var showingAlert = false
     @State private var buttonsDisabled = true
     @State private var alertMessage = ""
+    @State private var presentSheet = false
 
     
     var body: some View {
-        NavigationStack (path: $path) {
+        VStack {
             Image("logo")
                 .resizable()
                 .scaledToFit()
@@ -78,12 +78,7 @@ struct LoginView: View {
             .tint(Color("SnackColor"))
             .font(.title2)
             .padding(.top)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationDestination(for: String.self) { view in
-                if view == "ListView" {
-                    ListView()
-                }
-            }
+
         }
         .alert(alertMessage, isPresented: $showingAlert) {
             Button("OK", role: .cancel) {}
@@ -91,10 +86,12 @@ struct LoginView: View {
         .onAppear { // If there is already an authenticated user Navigate to the ListView
             if Auth.auth().currentUser != nil {
                 print("😎 Successful Login!")
-                path.append("ListView")
+                presentSheet = true
             }
         }
-        
+        .fullScreenCover(isPresented: $presentSheet) {
+            ListView()
+        }
     }
     
     func enableButtons() {
@@ -115,7 +112,7 @@ struct LoginView: View {
                 print("😡\(alertMessage)")
             } else {
                 print("😎 Registration success!")
-                path.append("ListView")
+                presentSheet = true
             }
         }
     }
@@ -128,7 +125,7 @@ struct LoginView: View {
                 print("😡\(alertMessage)")
             } else {
                 print("😎 Successful Login!")
-                path.append("ListView")
+               presentSheet = true
             }
         }
     }
