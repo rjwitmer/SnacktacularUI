@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC6D78292A9C1A12002F0E77 /* PlaceLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D78252A9C1A12002F0E77 /* PlaceLookupView.swift */; };
+		CC6D782A2A9C1A12002F0E77 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D78262A9C1A12002F0E77 /* PlaceViewModel.swift */; };
+		CC6D782B2A9C1A12002F0E77 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D78272A9C1A12002F0E77 /* Place.swift */; };
+		CC6D782C2A9C1A12002F0E77 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D78282A9C1A12002F0E77 /* LocationManager.swift */; };
 		CC9D26A92A968F7300856CF0 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC9D26A82A968F7300856CF0 /* ListView.swift */; };
 		CCA9E3722A93FF8400F570FA /* SnacktacularUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA9E3712A93FF8400F570FA /* SnacktacularUIApp.swift */; };
 		CCA9E3742A93FF8400F570FA /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCA9E3732A93FF8400F570FA /* LoginView.swift */; };
@@ -23,6 +27,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC6D78252A9C1A12002F0E77 /* PlaceLookupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceLookupView.swift; sourceTree = "<group>"; };
+		CC6D78262A9C1A12002F0E77 /* PlaceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
+		CC6D78272A9C1A12002F0E77 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		CC6D78282A9C1A12002F0E77 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		CC9D26A82A968F7300856CF0 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
 		CCA9E36E2A93FF8400F570FA /* SnacktacularUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnacktacularUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCA9E3712A93FF8400F570FA /* SnacktacularUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnacktacularUIApp.swift; sourceTree = "<group>"; };
@@ -72,11 +80,15 @@
 			children = (
 				CCA9E37F2A94003B00F570FA /* Info.plist */,
 				CCA9E3712A93FF8400F570FA /* SnacktacularUIApp.swift */,
+				CC6D78272A9C1A12002F0E77 /* Place.swift */,
 				CCD52E572A97E59C004454A3 /* Spot.swift */,
 				CCD52E5B2A97ECE8004454A3 /* SpotViewModel.swift */,
+				CC6D78282A9C1A12002F0E77 /* LocationManager.swift */,
+				CC6D78262A9C1A12002F0E77 /* PlaceViewModel.swift */,
 				CCA9E3732A93FF8400F570FA /* LoginView.swift */,
 				CC9D26A82A968F7300856CF0 /* ListView.swift */,
 				CCD52E592A97E79B004454A3 /* SpotDetailView.swift */,
+				CC6D78252A9C1A12002F0E77 /* PlaceLookupView.swift */,
 				CCA9E3752A93FF8600F570FA /* Assets.xcassets */,
 				CCA9E3892A94070500F570FA /* GoogleService-Info.plist */,
 				CCA9E3772A93FF8600F570FA /* Preview Content */,
@@ -172,10 +184,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC6D782A2A9C1A12002F0E77 /* PlaceViewModel.swift in Sources */,
 				CCD52E5A2A97E79B004454A3 /* SpotDetailView.swift in Sources */,
+				CC6D782C2A9C1A12002F0E77 /* LocationManager.swift in Sources */,
+				CC6D78292A9C1A12002F0E77 /* PlaceLookupView.swift in Sources */,
 				CCA9E3742A93FF8400F570FA /* LoginView.swift in Sources */,
 				CCD52E5C2A97ECE8004454A3 /* SpotViewModel.swift in Sources */,
 				CCA9E3722A93FF8400F570FA /* SnacktacularUIApp.swift in Sources */,
+				CC6D782B2A9C1A12002F0E77 /* Place.swift in Sources */,
 				CC9D26A92A968F7300856CF0 /* ListView.swift in Sources */,
 				CCD52E582A97E59C004454A3 /* Spot.swift in Sources */,
 			);
@@ -311,6 +327,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SnacktacularUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Snacktacular;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app requires access to the device's location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app requires access to the device's location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -341,6 +359,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SnacktacularUI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Snacktacular;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app requires access to the device's location";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app requires access to the device's location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
