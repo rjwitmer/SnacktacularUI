@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC63BD3B2A9E46D600623747 /* ReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC63BD3A2A9E46D600623747 /* ReviewViewModel.swift */; };
 		CC6D78292A9C1A12002F0E77 /* PlaceLookupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D78252A9C1A12002F0E77 /* PlaceLookupView.swift */; };
 		CC6D782A2A9C1A12002F0E77 /* PlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D78262A9C1A12002F0E77 /* PlaceViewModel.swift */; };
 		CC6D782B2A9C1A12002F0E77 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6D78272A9C1A12002F0E77 /* Place.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CC63BD3A2A9E46D600623747 /* ReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewModel.swift; sourceTree = "<group>"; };
 		CC6D78252A9C1A12002F0E77 /* PlaceLookupView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceLookupView.swift; sourceTree = "<group>"; };
 		CC6D78262A9C1A12002F0E77 /* PlaceViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaceViewModel.swift; sourceTree = "<group>"; };
 		CC6D78272A9C1A12002F0E77 /* Place.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				CCD52E5B2A97ECE8004454A3 /* SpotViewModel.swift */,
+				CC63BD3A2A9E46D600623747 /* ReviewViewModel.swift */,
 				CC6D78282A9C1A12002F0E77 /* LocationManager.swift */,
 				CC6D78262A9C1A12002F0E77 /* PlaceViewModel.swift */,
 			);
@@ -219,6 +222,7 @@
 			files = (
 				CC6D782A2A9C1A12002F0E77 /* PlaceViewModel.swift in Sources */,
 				CCD52E5A2A97E79B004454A3 /* SpotDetailView.swift in Sources */,
+				CC63BD3B2A9E46D600623747 /* ReviewViewModel.swift in Sources */,
 				CC6D782C2A9C1A12002F0E77 /* LocationManager.swift in Sources */,
 				CC6D78352A9D6C37002F0E77 /* StarsSelectionView.swift in Sources */,
 				CC6D78292A9C1A12002F0E77 /* PlaceLookupView.swift in Sources */,
