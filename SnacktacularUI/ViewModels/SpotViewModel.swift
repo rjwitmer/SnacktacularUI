@@ -8,6 +8,8 @@
 import Foundation
 import FirebaseFirestore
 
+@MainActor
+
 class SpotViewModel: ObservableObject {
     @Published var spot = Spot()
     let collectionName = "spots"
@@ -26,7 +28,9 @@ class SpotViewModel: ObservableObject {
             }
         } else {    // There is no id so this must be a new spot to add
             do {
-                try await db.collection(collectionName).addDocument(data: spot.dictionary)
+                let documentRef = try await db.collection(collectionName).addDocument(data: spot.dictionary)
+                self.spot = spot
+                self.spot.id = documentRef.documentID
                 print("😎 Data updated successfully!")
                 return true
             } catch {
