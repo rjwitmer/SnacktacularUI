@@ -11,6 +11,11 @@ import FirebaseFirestoreSwift
 import PhotosUI
 
 struct SpotDetailView: View {
+    
+    enum ButtonPressed {
+        case review, photo
+    }
+    
     struct Annotation: Identifiable {
         let id = UUID().uuidString
         var name: String
@@ -21,11 +26,15 @@ struct SpotDetailView: View {
     @EnvironmentObject var spotVM: SpotViewModel
     @EnvironmentObject var locationManager: LocationManager
     @FirestoreQuery(collectionPath: "spots") var reviews: [Review]  // The collectionPath is intentionally not correct and will generate a query failure, but this is necessary to work around an error. We'll correct the collectionPath in onAppear{} below
+    @FirestoreQuery(collectionPath: "spots") var photos: [Photo]  // The collectionPath is intentionally not correct and will generate a query failure, but this is necessary to work around an error. We'll correct the collectionPath in onAppear{} below
     @State var spot: Spot
     @State private var showPlaceLookupSheet = false
     @State private var showReviewViewSheet = false
+    @State private var showPhotoViewSheet = false
     @State private var showSaveAlert = false
     @State private var showingAsSheet = false
+    @State private var buttonPressed = ButtonPressed.review
+    @State private var uiImageSelected = UIImage()
     @State private var mapRegion = MKCoordinateRegion()
     @State private var annotations: [Annotation] = []
     @State private var selectedPhoto: PhotosPickerItem?
@@ -40,6 +49,7 @@ struct SpotDetailView: View {
     let regionSize = 500.0      // 500m Region Size
     let collectionName = "spots"        // Name of the Firestore Collection
     let subCollectionName = "reviews"   // Name of the Firestore subCollection
+    let subCollectionName2 = "photos"   // Name of the Photos Firestore subCollection
     var previewRunning = false
     
     var body: some View {
@@ -93,8 +103,14 @@ struct SpotDetailView: View {
                                 if let data = try await newValue?.loadTransferable(type: Data.self)
                                 {
                                     if let uiImage = UIImage(data: data) {
-                                        //TODO: This is where you'd set your Image = Image(utImage: uiImage)
+                                        uiImageSelected = uiImage
                                         print("📸 Successfully selected image!")
+                                        buttonPressed = .photo
+                                        if spot.id == nil {
+                                            showSaveAlert.toggle()
+                                        } else {
+                                            showPhotoViewSheet.toggle()
+                                        }
                                     }
                                 }
                             } catch {
@@ -105,6 +121,7 @@ struct SpotDetailView: View {
                     
 
                     Button {
+                        buttonPressed = .review
                         if spot.id == nil {
                             showSaveAlert.toggle()
                         } else {
@@ -205,6 +222,11 @@ struct SpotDetailView: View {
                 ReviewView(spot: spot, review: Review())
             }
         }
+        .sheet(isPresented: $showPhotoViewSheet) {
+            NavigationStack {
+                PhotoView(uiImage: uiImageSelected, spot: spot)
+            }
+        }
         .alert("Cannot Rate Place Unless It is Saved", isPresented: $showSaveAlert) {
             Button("Cancel", role: .cancel) {}
             Button("Save", role: .none) {
@@ -213,7 +235,14 @@ struct SpotDetailView: View {
                     spot = spotVM.spot
                     if success {
                         $reviews.path = "\(collectionName)/\(spot.id ?? "")/\(subCollectionName)"   // update the path to show new reviews
-                        showReviewViewSheet.toggle()
+                        $photos.path = "\(collectionName)/\(spot.id ?? "")/\(subCollectionName2)"
+                        switch buttonPressed {
+                        case.review:
+                            showReviewViewSheet.toggle()
+                        case.photo:
+                            showPhotoViewSheet.toggle()
+                        }
+                        
                     } else {
                         print("😡 ERROR: Saving spot!")
                     }

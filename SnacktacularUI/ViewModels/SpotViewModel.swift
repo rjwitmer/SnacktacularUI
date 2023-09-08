@@ -80,7 +80,7 @@ class SpotViewModel: ObservableObject {
         
         // Now save to the 'photos' collection of the spot document 'spotID'
         let db = Firestore.firestore()
-        let collectionString = "spots\(spotID)/photos"
+        let collectionString = "spots/\(spotID)/photos"
         
         do {
             var newPhoto = photo
