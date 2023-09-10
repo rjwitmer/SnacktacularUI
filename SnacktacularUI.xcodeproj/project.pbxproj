@@ -27,6 +27,7 @@
 		CCA9E3882A9403BF00F570FA /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = CCA9E3872A9403BF00F570FA /* FirebaseStorage */; };
 		CCA9E38A2A94070500F570FA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CCA9E3892A94070500F570FA /* GoogleService-Info.plist */; };
 		CCC0C05C2AA2806F00BDE600 /* SpotReviewRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C05B2AA2806F00BDE600 /* SpotReviewRowView.swift */; };
+		CCC44AB32AACF85700D432DE /* SpotDetailPhotosScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC44AB22AACF85700D432DE /* SpotDetailPhotosScrollView.swift */; };
 		CCC5C2D72AAB781000E303E0 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC5C2D62AAB781000E303E0 /* PhotoView.swift */; };
 		CCD52E582A97E59C004454A3 /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD52E572A97E59C004454A3 /* Spot.swift */; };
 		CCD52E5A2A97E79B004454A3 /* SpotDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD52E592A97E79B004454A3 /* SpotDetailView.swift */; };
@@ -52,6 +53,7 @@
 		CCA9E37F2A94003B00F570FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		CCA9E3892A94070500F570FA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CCC0C05B2AA2806F00BDE600 /* SpotReviewRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotReviewRowView.swift; sourceTree = "<group>"; };
+		CCC44AB22AACF85700D432DE /* SpotDetailPhotosScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailPhotosScrollView.swift; sourceTree = "<group>"; };
 		CCC5C2D62AAB781000E303E0 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		CCD52E572A97E59C004454A3 /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		CCD52E592A97E79B004454A3 /* SpotDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotDetailView.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 				CCA9E3732A93FF8400F570FA /* LoginView.swift */,
 				CC9D26A82A968F7300856CF0 /* ListView.swift */,
 				CCD52E592A97E79B004454A3 /* SpotDetailView.swift */,
+				CCC44AB22AACF85700D432DE /* SpotDetailPhotosScrollView.swift */,
 				CCC0C05B2AA2806F00BDE600 /* SpotReviewRowView.swift */,
 				CC6D78252A9C1A12002F0E77 /* PlaceLookupView.swift */,
 				CC6D78322A9D277E002F0E77 /* ReviewView.swift */,
@@ -239,6 +242,7 @@
 				CC6D78292A9C1A12002F0E77 /* PlaceLookupView.swift in Sources */,
 				CCC0C05C2AA2806F00BDE600 /* SpotReviewRowView.swift in Sources */,
 				CC6D78332A9D277E002F0E77 /* ReviewView.swift in Sources */,
+				CCC44AB32AACF85700D432DE /* SpotDetailPhotosScrollView.swift in Sources */,
 				CCA9E3742A93FF8400F570FA /* LoginView.swift in Sources */,
 				CCD52E5C2A97ECE8004454A3 /* SpotViewModel.swift in Sources */,
 				CC6D782E2A9D2328002F0E77 /* Review.swift in Sources */,

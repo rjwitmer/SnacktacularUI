@@ -25,9 +25,11 @@ struct SpotDetailView: View {
     
     @EnvironmentObject var spotVM: SpotViewModel
     @EnvironmentObject var locationManager: LocationManager
-    @FirestoreQuery(collectionPath: "spots") var reviews: [Review]  // The collectionPath is intentionally not correct and will generate a query failure, but this is necessary to work around an error. We'll correct the collectionPath in onAppear{} below
-    @FirestoreQuery(collectionPath: "spots") var photos: [Photo]  // The collectionPath is intentionally not correct and will generate a query failure, but this is necessary to work around an error. We'll correct the collectionPath in onAppear{} below
+    // The two FirestoreQuery variables below do not have the correct path, this with be corrected in the onAppear below
+    @FirestoreQuery(collectionPath: "spots") var reviews: [Review]
+    @FirestoreQuery(collectionPath: "spots") var photos: [Photo]
     @State var spot: Spot
+    @State private var newPhoto = Photo()
     @State private var showPlaceLookupSheet = false
     @State private var showReviewViewSheet = false
     @State private var showPhotoViewSheet = false
@@ -77,6 +79,8 @@ struct SpotDetailView: View {
                 mapRegion.center = spot.coordinate
             }
             
+            SpotDetailPhotosScrollView(photos: photos, spot: spot)
+            
             HStack {
                 Group {
                     Text("Avg. Rating:")
@@ -105,6 +109,7 @@ struct SpotDetailView: View {
                                     if let uiImage = UIImage(data: data) {
                                         uiImageSelected = uiImage
                                         print("📸 Successfully selected image!")
+                                        newPhoto = Photo()  // clears out contents if you add more than one photo for this spot
                                         buttonPressed = .photo
                                         if spot.id == nil {
                                             showSaveAlert.toggle()
@@ -161,6 +166,9 @@ struct SpotDetailView: View {
             if !previewRunning && spot.id != nil {    // Workaround Preview error with these lines
                 $reviews.path = "\(collectionName)/\(spot.id ?? "")/\(subCollectionName)"
                 print("review.path = \($reviews.path)")
+                
+                $photos.path = "\(collectionName)/\(spot.id ?? "")/\(subCollectionName2)"
+                print("photo.path = \($photos.path)")
             } else {    // spot.id starts out as nil
                 showingAsSheet = true
             }
@@ -224,7 +232,7 @@ struct SpotDetailView: View {
         }
         .sheet(isPresented: $showPhotoViewSheet) {
             NavigationStack {
-                PhotoView(uiImage: uiImageSelected, spot: spot)
+                PhotoView(photo: $newPhoto, uiImage: uiImageSelected, spot: spot)
             }
         }
         .alert("Cannot Rate Place Unless It is Saved", isPresented: $showSaveAlert) {
@@ -234,7 +242,8 @@ struct SpotDetailView: View {
                     let success = await spotVM.saveSpot(spot: spot)
                     spot = spotVM.spot
                     if success {
-                        $reviews.path = "\(collectionName)/\(spot.id ?? "")/\(subCollectionName)"   // update the path to show new reviews
+                        // update the paths to show the new reviews/photos
+                        $reviews.path = "\(collectionName)/\(spot.id ?? "")/\(subCollectionName)"
                         $photos.path = "\(collectionName)/\(spot.id ?? "")/\(subCollectionName2)"
                         switch buttonPressed {
                         case.review:
